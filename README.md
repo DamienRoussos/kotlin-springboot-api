@@ -5,24 +5,17 @@ Documentation for my api
 
 Example get request
 ```shell
-curl --location --request GET 'localhost:8080/' \
---header 'Content-Type: application/json' \
---data ''
+curl 'localhost:8080/'
 ```
 
 Example post request
 ```shell
-curl -X POST 'localhost:8080/hello' \
---header 'Content-Type: application/json' \
---data '{
+curl -X POST 'localhost:8080/hello' --header 'Content-Type: application/json' --data '{
     "user": "<your_name_here>"
 }'
 ```
 
 Example login request
 ```shell
-curl --location 'localhost:8080/login' \
---header 'username: <your_username>' \
---header 'password: <your_password>' \
---data ''
+curl 'localhost:8080/login' --header 'username: <your_username>' --header 'password: <your_password>'
 ```

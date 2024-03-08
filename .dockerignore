@@ -1,0 +1,21 @@
+# Exclude build and IDE directories
+build/
+.idea/
+
+# Exclude Gradle and Maven cache directories
+.gradle/
+.m2/
+
+# Exclude log files
+*.log
+
+# Exclude temporary files
+*.tmp
+*.temp
+
+# Exclude editor backup files
+*~
+
+# Exclude Docker-related files
+Dockerfile*
+.dockerignore

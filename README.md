@@ -22,6 +22,10 @@ Documentation for my api
 ```
    docker run -p 8080:8080 <image-name>
 ```
+   Or use the command below to run the container detached and continue in the same terminal window
+```
+   docker run -d -p 8080:8080 <image-name>
+```
 4. **Access the Application**:  
    Open a web browser and navigate to [http://localhost:8080](http://localhost:8080) to access the application.  
    Or use the curl commands given below to access the application from your terminal if you have curl installed.

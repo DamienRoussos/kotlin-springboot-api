@@ -3,9 +3,7 @@
 Documentation for my api
 * [Github repository for this](https://github.com/DamienRoussos/kotlin-springboot-api)
 
-* Prerequisites
-
-: Install Docker [Intructions on how to install Docker for your machine from the official Docker website](https://docs.docker.com/engine/install/)
+* Prerequisites: Install Docker [Intructions on how to install Docker for your machine from the official Docker website](https://docs.docker.com/engine/install/)
 
 ## Get started
 

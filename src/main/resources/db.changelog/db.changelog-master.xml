@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+    <!-- Create table for Owner entity -->
+    <changeSet id="create_owner_table" author="damien">
+        <createTable tableName="owner">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tax_number" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_number" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="owner"
+                                 baseColumnNames="restaurant_id"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 constraintName="fk_owner_restaurant"/>
+    </changeSet>
+
+    <!-- Create restaurant_owner table -->
+    <changeSet id="create_restaurant_owner_table" author="damien">
+        <createTable tableName="restaurant_owner">
+            <column name="restaurant_id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owner_id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="restaurant_owner"
+                                 baseColumnNames="restaurant_id"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_restaurant_owner_restaurant"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="restaurant_owner"
+                                 baseColumnNames="owner_id"
+                                 referencedTableName="owner"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_restaurant_owner_owner"
+                                 onDelete="CASCADE"/>
+        <addUniqueConstraint constraintName="uc_restaurant_owner_ubo"
+                             columnNames="restaurant_id"
+                             tableName="unique_owner_name"/>
+    </changeSet>
+
+
+    <!-- Create table for Restaurant entity -->
+    <changeSet id="create_restaurant_table" author="damien">
+        <createTable tableName="restaurant">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="zipcode" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="neighborhood" type="VARCHAR(100)"/>
+            <column name="city" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_number" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="website_url" type="VARCHAR(255)"/>
+            <column name="social_media_profiles" type="JSON"/>
+            <column name="operating_hours" type="JSON">
+                <constraints nullable="false"/>
+            </column>
+            <column name="menu_item" type="JSON">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ratings" type="JSON"/>
+            <column name="cuisine_type" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_options" type="TEXT"/>
+            <column name="owners" type="VARCHAR(1000)"/>
+            <column name="ultimate_beneficial_owner_id" type="VARCHAR(100)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="restaurant"
+                                 baseColumnNames="owners"
+                                 referencedTableName="owner"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_restaurant_owners"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="restaurant"
+                                 baseColumnNames="ultimate_beneficial_owner_id"
+                                 referencedTableName="owner"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_restaurant_ubo"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Create social_media_profile table -->
+    <changeSet id="create_social_media_profiles_table" author="damien">
+        <createTable tableName="social_media_profiles">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="platform_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="social_media_profile"
+                                 baseColumnNames="restaurant_id"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_social_media_profile_restaurant"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Create operating_hours table -->
+    <changeSet id="create_operating_hours_table" author="damien">
+        <createTable tableName="operating_hours">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day_of_week" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="opening_hour" type="TIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="closing_hour" type="TIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="operating_hours"
+                                 baseColumnNames="restaurant_id"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_operating_hours_restaurant"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Create menu_item table -->
+    <changeSet id="create_menu_item_table" author="damien">
+        <createTable tableName="menu_item">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(200)"/>
+            <column name="dietary_information_id" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="menu_item"
+                                 baseColumnNames="dietary_information_id"
+                                 referencedTableName="dietary_information"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_menu_item_dietary_information"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="menu_item"
+                                 baseColumnNames="restaurant_id"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_menu_item_restaurant"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Create dietary_information table -->
+    <changeSet id="create_dietary_information_table" author="damien">
+        <createTable tableName="dietary_information">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="menu_item_id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="information" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="dietary_information"
+                                 baseColumnNames="menu_item_id"
+                                 referencedTableName="menu_item"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_dietary_information_menu_item"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Create ratings table -->
+    <changeSet id="create_ratings_table" author="damien">
+        <createTable tableName="ratings">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rating" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="review" type="VARCHAR(255)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="ratings"
+                                 baseColumnNames="restaurant_id"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_ratings_restaurant"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Create cuisine type table -->
+    <changeSet id="create_cuisine_type_table" author="damien">
+        <createTable tableName="cuisine_type">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="cuisine_type" type="VARCHAR(40)"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="cuisine_type"
+                                 baseColumnNames="restaurant_id"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_cuisine_type_restaurant"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+
+    <!-- Create payment options table -->
+    <changeSet id="create_payment_options_table" author="damien">
+        <createTable tableName="payment_options">
+            <column name="id" type="VARCHAR(100)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="payment_type" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

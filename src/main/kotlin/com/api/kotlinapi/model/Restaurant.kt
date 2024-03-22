@@ -7,18 +7,22 @@ data class Restaurant (
     val address: String,
     val active: Boolean,
     val zipcode: String,
-    val location: Location,
+    val latitude: Double,
+    val longitude: Double,
+    val neighborhood: String?,
+    val city: String,
+    val country: String,
     val contactNumber: String,
     val email: String,
     val websiteUrl: String?,
     val socialMediaProfiles: Map<String, String>?,
     val operatingHours: Map<String, Collection<String>>, // Day to opening hours
     val menu: List<MenuItem>,
-    val ratings: List<Rating>,
+    val ratings: List<Rating>?,
     val cuisineType: List<String>,
-    val paymentOptions: List<String>,
-    val owners: List<Owner>?,
-    val ultimateBeneficialOwner: Owner
+    val paymentOptions: List<String>
+//    val owners: List<Owner>?,
+//    val ultimateBeneficialOwner: Owner
 )
 
 // Data class representing a menu item
@@ -33,13 +37,4 @@ data class MenuItem (
 data class Rating (
     val rating: Double,
     val review: String?
-)
-
-// Data class representing a location
-data class Location(
-    val latitude: Double,
-    val longitude: Double,
-    val neighborhood: String?,
-    val city: String,
-    val country: String
 )

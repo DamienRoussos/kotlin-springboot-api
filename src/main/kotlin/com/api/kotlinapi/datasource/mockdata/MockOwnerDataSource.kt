@@ -14,7 +14,8 @@ class MockOwnerDataSource: OwnerDataSource {
             id = "1",
             name = "John Doe",
             taxNumber = "130498571345",
-            contactNumber = "0612345678"
+            contactNumber = "0612345678",
+//            restaurants = emptyList()
         )
     )
 

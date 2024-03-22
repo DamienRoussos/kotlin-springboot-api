@@ -5,5 +5,6 @@ data class Owner (
     val id: String,
     val name: String,
     val taxNumber: String,
-    val contactNumber: String
+    val contactNumber: String,
+//    val restaurants: List<Restaurant>?
 )

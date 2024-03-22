@@ -16,7 +16,11 @@ class MockRestaurantDataSource: RestaurantDataSource {
             address = "Somewhere 1234",
             active = true,
             zipcode = "2308AJ",
-            location = Location(45.5061551,-73.5559958,"","Amsterdam","NL"),
+            latitude = 45.5061551,
+            longitude = -73.5559958,
+            neighborhood = "",
+            city= "Amsterdam",
+            country = "NL",
             contactNumber = "0203894567",
             email = "info@mcdonaldsexample.com",
             websiteUrl = "https://www.themcdonalds.com",
@@ -51,13 +55,14 @@ class MockRestaurantDataSource: RestaurantDataSource {
             )),
             cuisineType = listOf("American","Burger"),
             paymentOptions = listOf("online","cash"),
-            owners = emptyList(),
-            ultimateBeneficialOwner = Owner(
-                "14",
-                "John Doe",
-                "1324709817345",
-                "0623453451"
-            )
+//            owners = emptyList(),
+//            ultimateBeneficialOwner = Owner(
+//                "14",
+//                "John Doe",
+//                "1324709817345",
+//                "0623453451",
+//                emptyList()
+//            )
         )
     )
 

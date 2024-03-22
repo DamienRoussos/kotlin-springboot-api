@@ -20,14 +20,21 @@ repositories {
 }
 
 dependencies {
-//	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-//	implementation ("org.liquibase:liquibase-core")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-//	implementation("com.mysql:mysql-connector-j")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.0")
+	implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.23")
+
+	implementation("org.springframework.boot:spring-boot-starter-web:3.2.4")
+
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.2.4")
+
+	implementation ("org.liquibase:liquibase-core:4.26.0")
+	implementation("org.liquibase:liquibase-gradle-plugin:2.2.1")
+
+	implementation("com.mysql:mysql-connector-j:8.3.0")
+
+	developmentOnly("org.springframework.boot:spring-boot-devtools:3.2.4")
+	testImplementation("org.springframework.boot:spring-boot-starter-test:3.2.4")
 }
 
 tasks.withType<KotlinCompile> {

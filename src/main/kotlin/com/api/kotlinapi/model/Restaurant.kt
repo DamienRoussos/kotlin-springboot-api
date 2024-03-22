@@ -1,7 +1,8 @@
 package com.api.kotlinapi.model
 
+// Data class representing a restaurant
 data class Restaurant (
-    val id: Long,
+    val id: String,
     val name: String,
     val address: String,
     val active: Boolean,
@@ -20,6 +21,7 @@ data class Restaurant (
     val ultimateBeneficialOwner: Owner
 )
 
+// Data class representing a menu item
 data class MenuItem (
     val name: String,
     val description: String?,
@@ -27,11 +29,13 @@ data class MenuItem (
     val price: Double
 )
 
+// Data class representing a rating
 data class Rating (
     val rating: Double,
     val review: String?
 )
 
+// Data class representing a location
 data class Location(
     val latitude: Double,
     val longitude: Double,

@@ -1,15 +1,17 @@
 package com.api.kotlinapi.datasource.mockdata
 
 import com.api.kotlinapi.datasource.RestaurantDataSource
-import com.api.kotlinapi.model. *
+import com.api.kotlinapi.model.*
 import org.springframework.stereotype.Repository
 
+// Mock implementation of RestaurantDataSource
 @Repository
 class MockRestaurantDataSource: RestaurantDataSource {
 
+    // Mock data for restaurants
     val restaurants = listOf(
         Restaurant(
-            id = 1,
+            id = "1",
             name = "McDonald's",
             address = "Somewhere 1234",
             active = true,
@@ -51,7 +53,7 @@ class MockRestaurantDataSource: RestaurantDataSource {
             paymentOptions = listOf("online","cash"),
             owners = emptyList(),
             ultimateBeneficialOwner = Owner(
-                14,
+                "14",
                 "John Doe",
                 "1324709817345",
                 "0623453451"
@@ -59,17 +61,18 @@ class MockRestaurantDataSource: RestaurantDataSource {
         )
     )
 
+    // Method to retrieve all restaurants
     override fun retrieveAllRestaurants(): Collection<Restaurant> = restaurants
 
-    override fun retrieveRestaurant(id: Long): Restaurant = restaurants.firstOrNull() { it.id == id }
+    // Method to retrieve a restaurant by ID
+    override fun retrieveRestaurant(id: String): Restaurant = restaurants.firstOrNull() { it.id == id }
         ?: throw NoSuchElementException("Could not find a restaurant with id $id")
 
+    // Method to retrieve all active restaurants
     override fun retrieveAllActiveRestaurants(): Collection<Restaurant> {
         val activeRestaurants = restaurants.filter { it.active }
         return activeRestaurants.ifEmpty {
             throw NoSuchElementException("Could not find active restaurants")
         }
     }
-
-
 }

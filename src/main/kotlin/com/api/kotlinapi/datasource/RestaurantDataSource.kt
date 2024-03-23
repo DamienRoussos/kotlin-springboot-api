@@ -1,10 +1,11 @@
 package com.api.kotlinapi.datasource
 
 import com.api.kotlinapi.model.Restaurant
+import org.springframework.data.jpa.repository.JpaRepository
 
 // Interface defining operations for accessing restaurant data
-interface RestaurantDataSource {
-    fun retrieveAllRestaurants(): Collection<Restaurant>
-    fun retrieveRestaurant(id: String): Restaurant
-    fun retrieveAllActiveRestaurants(): Collection<Restaurant>
+interface RestaurantRepository: JpaRepository<Restaurant, String> {
+    fun getAllRestaurants(): Collection<Restaurant>
+    fun getRestaurantById(id: String): Restaurant
+    fun getAllActiveRestaurants(): Collection<Restaurant>
 }

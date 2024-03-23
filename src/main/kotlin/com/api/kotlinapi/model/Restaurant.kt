@@ -1,7 +1,13 @@
 package com.api.kotlinapi.model
 
+import jakarta.persistence.*
+
 // Data class representing a restaurant
+@Entity
+@Table(name = "restaurant")
 data class Restaurant (
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: String,
     val name: String,
     val address: String,

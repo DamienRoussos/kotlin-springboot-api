@@ -19,3 +19,6 @@ build/
 # Exclude Docker-related files
 Dockerfile*
 .dockerignore
+
+# Exclude environment file
+.env

@@ -19,5 +19,5 @@ class RestaurantController(service: RestaurantService) : BaseController<Restaura
     override fun getAllEntities(): Collection<Restaurant> = service.getAllRestaurants()
 
     // Override method to retrieve a restaurant by ID
-    override fun getEntityById(id: String): Restaurant = service.getRestaurantById(id)
+    override fun getEntityById(id: String): Restaurant = service.getRestaurantById(id)!!
 }

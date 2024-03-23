@@ -22,6 +22,6 @@ class MockOwnerDataSource: OwnerDataSource {
     override fun retrieveAllOwners(): Collection<Owner> = owners
 
     // Method to retrieve an owner by ID
-    override fun retrieveOwnerById(id: String): Owner = owners.firstOrNull() { it.id == id}
+    override fun retrieveOwnerById(id: String): Owner = owners.firstOrNull { it.id == id}
         ?: throw NoSuchElementException("Could not find an owner with id $id")
 }

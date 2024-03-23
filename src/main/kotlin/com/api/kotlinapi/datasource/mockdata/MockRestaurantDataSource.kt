@@ -65,7 +65,7 @@ class MockRestaurantDataSource: RestaurantDataSource {
     override fun retrieveAllRestaurants(): Collection<Restaurant> = restaurants
 
     // Method to retrieve a restaurant by ID
-    override fun retrieveRestaurant(id: String): Restaurant = restaurants.firstOrNull() { it.id == id }
+    override fun retrieveRestaurant(id: String): Restaurant = restaurants.firstOrNull { it.id == id }
         ?: throw NoSuchElementException("Could not find a restaurant with id $id")
 
     // Method to retrieve all active restaurants

@@ -1,12 +1,12 @@
 package com.api.kotlinapi.service
 
+import com.api.kotlinapi.datasource.mockdata.MockRestaurantDataSource
 import org.springframework.stereotype.Service
-import com.api.kotlinapi.datasource.RestaurantDataSource
 import com.api.kotlinapi.model.Restaurant
 
 // Service class responsible for handling restaurant-related business logic
 @Service
-class RestaurantService(private val dataSource: RestaurantDataSource) {
+class RestaurantService(private val dataSource: MockRestaurantDataSource) {
 
     // Method to retrieve all restaurants
     fun getAllRestaurants(): Collection<Restaurant> = dataSource.retrieveAllRestaurants()

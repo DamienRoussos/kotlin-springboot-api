@@ -9,7 +9,7 @@ abstract class BaseController<Type, Service>(val service: Service) {
     fun getAll(): Collection<Type> = getAllEntities()
 
     @GetMapping("/{id}")
-    fun Entity(@PathVariable id: String): Type = getEntityById(id)
+    fun entity(@PathVariable id: String): Type = getEntityById(id)
 
     abstract fun getAllEntities(): Collection<Type>
 

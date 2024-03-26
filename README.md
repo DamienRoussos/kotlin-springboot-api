@@ -30,19 +30,16 @@ Documentation for my api
    Open a web browser and navigate to [http://localhost:8080](http://localhost:8080) to access the application.  
    Or use the curl commands given below to access the application from your terminal if you have curl installed.
 
-Example get request
+Example get requests (using restaurants but same logic applies for owners)
+- To retrieve all the restaurants
 ```shell
-curl 'localhost:8080/'
+curl 'localhost:8080/restaurants'
 ```
-
-Example post request
+- To retrieve a specific restaurant by its id
 ```shell
-curl -X POST 'localhost:8080/hello' --header 'Content-Type: application/json' --data '{
-    "user": "<your_name_here>"
-}'
+curl 'localhost:8080/restaurants/{id}'
 ```
-
-Example login request
+- To retrieve all active restaurants (applicable only for restaurants)
 ```shell
-curl 'localhost:8080/login' --header 'username: <your_username>' --header 'password: <your_password>'
+curl 'localhost:8080/restaurants/active'
 ```

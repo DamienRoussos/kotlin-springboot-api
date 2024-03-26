@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 // Controller responsible for handling Restaurant-related endpoints
 @RestController
-@RequestMapping("/restaurant")
+@RequestMapping("/restaurants")
 class RestaurantController(service: RestaurantService) : BaseController<Restaurant, RestaurantService>(service) {
 
     // Endpoint to retrieve all active restaurants
     @GetMapping("/active")
     fun getAllActive(): Collection<Restaurant> = service.getAllActiveRestaurants()
 
-    // Override method to retrieve all restaurants
+    // Override method to
     override fun getAllEntities(): Collection<Restaurant> = service.getAllRestaurants()
 
     // Override method to retrieve a restaurant by ID

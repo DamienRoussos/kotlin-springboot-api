@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 // Controller responsible for handling Owner-related endpoints
 @RestController
-@RequestMapping("/owner")
+@RequestMapping("/owners")
 class OwnerController(service: OwnerService) : BaseController<Owner, OwnerService>(service) {
 
     // Override method to retrieve all owners
